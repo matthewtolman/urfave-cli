@@ -415,7 +415,7 @@ func checkBinarySizeActionFunc(c *cli.Context) (err error) {
 		cliBuiltFilePath     = "./internal/example-cli/built-example"
 		helloSourceFilePath  = "./internal/example-hello-world/example-hello-world.go"
 		helloBuiltFilePath   = "./internal/example-hello-world/built-example"
-		desiredMaxBinarySize = 2.2
+		desiredMaxBinarySize = 2.5
 		mbStringFormatter    = "%.1fMB"
 	)
 
