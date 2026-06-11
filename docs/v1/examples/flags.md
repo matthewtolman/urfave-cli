@@ -16,7 +16,7 @@ import (
   "log"
   "os"
 
-  "github.com/urfave/cli"
+  "github.com/matthewtolman/urfave-cli"
 )
 
 func main() {
@@ -64,7 +64,7 @@ import (
   "os"
   "fmt"
 
-  "github.com/urfave/cli"
+  "github.com/matthewtolman/urfave-cli"
 )
 
 func main() {
@@ -101,7 +101,7 @@ func main() {
 }
 ```
 
-See full list of flags at http://godoc.org/github.com/urfave/cli
+See full list of flags at http://godoc.org/github.com/matthewtolman/urfave-cli
 
 #### Placeholder Values
 
@@ -121,7 +121,7 @@ import (
   "log"
   "os"
 
-  "github.com/urfave/cli"
+  "github.com/matthewtolman/urfave-cli"
 )
 
 func main() {
@@ -166,7 +166,7 @@ import (
   "log"
   "os"
 
-  "github.com/urfave/cli"
+  "github.com/matthewtolman/urfave-cli"
 )
 
 func main() {
@@ -211,7 +211,7 @@ import (
   "os"
   "sort"
 
-  "github.com/urfave/cli"
+  "github.com/matthewtolman/urfave-cli"
 )
 
 func main() {
@@ -280,7 +280,7 @@ import (
   "log"
   "os"
 
-  "github.com/urfave/cli"
+  "github.com/matthewtolman/urfave-cli"
 )
 
 func main() {
@@ -316,7 +316,7 @@ import (
   "log"
   "os"
 
-  "github.com/urfave/cli"
+  "github.com/matthewtolman/urfave-cli"
 )
 
 func main() {
@@ -353,7 +353,7 @@ import (
   "log"
   "os"
 
-  "github.com/urfave/cli"
+  "github.com/matthewtolman/urfave-cli"
 )
 
 func main() {
@@ -425,8 +425,8 @@ import (
   "log"
   "os"
 
-  "github.com/urfave/cli"
-  "github.com/urfave/cli/altsrc"
+  "github.com/matthewtolman/urfave-cli"
+  "github.com/matthewtolman/urfave-cli/altsrc"
 )
 
 func main() {

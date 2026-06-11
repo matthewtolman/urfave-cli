@@ -49,7 +49,7 @@ require human intervention through the GitHub web view although
 exist](https://github.com/softprops/action-gh-release) that may be
 adopted in the future.
 
-- Open the [the new release page](https://github.com/urfave/cli/releases/new)
+- Open the [the new release page](https://github.com/matthewtolman/urfave-cli/releases/new)
 - At the top of the form, click on the `Choose a tag` select control and select `v2.4.8`
 - In the `Write` tab below, click the `Auto-generate release notes` button
 - At the bottom of the form, click the `Publish release` button

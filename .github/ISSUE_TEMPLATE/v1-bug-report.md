@@ -13,8 +13,8 @@ _**( Put the version of urfave/cli that you are using here )**_
 
 ## Checklist
 
-- [ ] Are you running the latest v1 release? The list of releases is [here](https://github.com/urfave/cli/releases).
-- [ ] Did you check the manual for your release? The v1 manual is [here](https://github.com/urfave/cli/blob/main/docs/v1/manual.md).
+- [ ] Are you running the latest v1 release? The list of releases is [here](https://github.com/matthewtolman/urfave-cli/releases).
+- [ ] Did you check the manual for your release? The v1 manual is [here](https://github.com/matthewtolman/urfave-cli/blob/main/docs/v1/manual.md).
 - [ ] Did you perform a search about this problem? Here's the [GitHub guide](https://help.github.com/en/github/managing-your-work-on-github/using-search-to-filter-issues-and-pull-requests) about searching.
 
 ## Dependency Management

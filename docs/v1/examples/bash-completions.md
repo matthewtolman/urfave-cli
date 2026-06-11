@@ -20,7 +20,7 @@ import (
   "log"
   "os"
 
-  "github.com/urfave/cli"
+  "github.com/matthewtolman/urfave-cli"
 )
 
 func main() {
@@ -95,7 +95,7 @@ import (
   "log"
   "os"
 
-  "github.com/urfave/cli"
+  "github.com/matthewtolman/urfave-cli"
 )
 
 func main() {

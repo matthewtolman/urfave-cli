@@ -18,7 +18,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/urfave/cli/v2"
+	"github.com/matthewtolman/urfave-cli/v2"
 )
 
 func main() {
@@ -65,7 +65,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/urfave/cli/v2"
+	"github.com/matthewtolman/urfave-cli/v2"
 )
 
 func main() {
@@ -100,7 +100,7 @@ func main() {
 }
 ```
 
-See full list of flags at https://pkg.go.dev/github.com/urfave/cli/v2
+See full list of flags at https://pkg.go.dev/github.com/matthewtolman/urfave-cli/v2
 
 For bool flags you can specify the flag multiple times to get a count(e.g -v -v -v or -vvv)
 
@@ -118,7 +118,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/urfave/cli/v2"
+	"github.com/matthewtolman/urfave-cli/v2"
 )
 
 func main() {
@@ -164,7 +164,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/urfave/cli/v2"
+	"github.com/matthewtolman/urfave-cli/v2"
 )
 
 func main() {
@@ -209,7 +209,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/urfave/cli/v2"
+	"github.com/matthewtolman/urfave-cli/v2"
 )
 
 func main() {
@@ -253,7 +253,7 @@ import (
 	"log"
 	"os"
 	"strings"
-	"github.com/urfave/cli/v2"
+	"github.com/matthewtolman/urfave-cli/v2"
 )
 func main() {
 	app := &cli.App{
@@ -287,7 +287,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/urfave/cli/v2"
+	"github.com/matthewtolman/urfave-cli/v2"
 )
 
 func main() {
@@ -347,7 +347,7 @@ import (
 	"os"
 	"sort"
 
-	"github.com/urfave/cli/v2"
+	"github.com/matthewtolman/urfave-cli/v2"
 )
 
 func main() {
@@ -416,7 +416,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/urfave/cli/v2"
+	"github.com/matthewtolman/urfave-cli/v2"
 )
 
 func main() {
@@ -452,7 +452,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/urfave/cli/v2"
+	"github.com/matthewtolman/urfave-cli/v2"
 )
 
 func main() {
@@ -491,7 +491,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/urfave/cli/v2"
+	"github.com/matthewtolman/urfave-cli/v2"
 )
 
 func main() {
@@ -565,8 +565,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/urfave/cli/v2"
-	"github.com/urfave/cli/v2/altsrc"
+	"github.com/matthewtolman/urfave-cli/v2"
+	"github.com/matthewtolman/urfave-cli/v2/altsrc"
 )
 
 func main() {
@@ -606,7 +606,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/urfave/cli/v2"
+	"github.com/matthewtolman/urfave-cli/v2"
 )
 
 func main() {
@@ -660,7 +660,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/urfave/cli/v2"
+	"github.com/matthewtolman/urfave-cli/v2"
 )
 
 func main() {
@@ -713,7 +713,7 @@ import (
 	"os"
 	"fmt"
 
-	"github.com/urfave/cli/v2"
+	"github.com/matthewtolman/urfave-cli/v2"
 )
 
 func main() {

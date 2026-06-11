@@ -18,13 +18,13 @@ milestones and import paths to which they correspond are:
 
 #### `main` branch
 
-<https://github.com/urfave/cli/tree/main>
+<https://github.com/matthewtolman/urfave-cli/tree/main>
 
 The majority of active development and issue management is targeting the `main` branch,
 which **MUST** *only* receive bug fixes and feature *additions*.
 
-- :arrow_right: [`v2.x`](https://github.com/urfave/cli/milestone/16)
-- :arrow_right: `github.com/urfave/cli/v2`
+- :arrow_right: [`v2.x`](https://github.com/matthewtolman/urfave-cli/milestone/16)
+- :arrow_right: `github.com/matthewtolman/urfave-cli/v2`
 
 The `main` branch in particular includes tooling to help with keeping the `v2.x` series
 backward compatible. More details on this process are in the development workflow section
@@ -32,24 +32,24 @@ below.
 
 #### `v1` branch
 
-<https://github.com/urfave/cli/tree/v1>
+<https://github.com/matthewtolman/urfave-cli/tree/v1>
 
 The `v1` branch **MUST** only receive bug fixes in the `v1.22.x` series. There is no
 strict rule regarding bug fixes to the `v2.x` series being backported to the `v1.22.x`
 series.
 
-- :arrow_right: [`v1.22.x`](https://github.com/urfave/cli/milestone/11)
-- :arrow_right: `github.com/urfave/cli`
+- :arrow_right: [`v1.22.x`](https://github.com/matthewtolman/urfave-cli/milestone/11)
+- :arrow_right: `github.com/matthewtolman/urfave-cli`
 
 #### `v3-dev-main` branch
 
-<https://github.com/urfave/cli/tree/v3-dev-main>
+<https://github.com/matthewtolman/urfave-cli/tree/v3-dev-main>
 
 The `v3-dev-branch` **MUST** receive all bug fixes and features added to the `main` branch
 and **MAY** receive feature *removals* and other changes that are otherwise
 *backward-incompatible* with the `v2.x` series.
 
-- :arrow_right: [`v3.x`](https://github.com/urfave/cli/milestone/5)
+- :arrow_right: [`v3.x`](https://github.com/matthewtolman/urfave-cli/milestone/5)
 - unreleased / unsupported
 
 ### development workflow
@@ -66,7 +66,7 @@ make
 Running the default `make` target (`all`) will ensure all of the critical steps are run to
 verify one's changes are harmonious in nature. The same steps are also run during the
 [continuous integration
-phase](https://github.com/urfave/cli/blob/main/.github/workflows/cli.yml).
+phase](https://github.com/matthewtolman/urfave-cli/blob/main/.github/workflows/cli.yml).
 
 In the event that the `v2diff` target exits non-zero, this is a signal that the public API
 surface area has changed. If the changes adhere to semantic versioning, meaning they are

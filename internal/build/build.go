@@ -18,7 +18,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/urfave/cli/v2"
+	"github.com/matthewtolman/urfave-cli/v2"
 )
 
 const (
@@ -243,10 +243,10 @@ func TestActionFunc(c *cli.Context) error {
 	tags := c.String("tags")
 
 	for _, pkg := range c.StringSlice("packages") {
-		packageName := "github.com/urfave/cli/v2"
+		packageName := "github.com/matthewtolman/urfave-cli/v2"
 
 		if pkg != "cli" {
-			packageName = fmt.Sprintf("github.com/urfave/cli/v2/%s", pkg)
+			packageName = fmt.Sprintf("github.com/matthewtolman/urfave-cli/v2/%s", pkg)
 		}
 
 		args := []string{"test"}
@@ -407,8 +407,8 @@ func GfmrunActionFunc(cCtx *cli.Context) error {
 }
 
 // checkBinarySizeActionFunc checks the size of an example binary to ensure that we are keeping size down
-// this was originally inspired by https://github.com/urfave/cli/issues/1055, and followed up on as a part
-// of https://github.com/urfave/cli/issues/1057
+// this was originally inspired by https://github.com/matthewtolman/urfave-cli/issues/1055, and followed up on as a part
+// of https://github.com/matthewtolman/urfave-cli/issues/1057
 func checkBinarySizeActionFunc(c *cli.Context) (err error) {
 	const (
 		cliSourceFilePath    = "./internal/example-cli/example-cli.go"
@@ -630,7 +630,7 @@ func SetMkdocsRemoteActionFunc(cCtx *cli.Context) error {
 
 	return runCmd(
 		"git", "remote", "add", "origin",
-		fmt.Sprintf("https://x-access-token:%[1]s@github.com/urfave/cli.git", ghToken),
+		fmt.Sprintf("https://x-access-token:%[1]s@github.com/matthewtolman/urfave-cli.git", ghToken),
 	)
 }
 
