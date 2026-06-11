@@ -3,6 +3,8 @@ package altsrc
 import (
 	"fmt"
 	"math"
+	"os"
+	"strconv"
 	"strings"
 	"time"
 
@@ -59,17 +61,30 @@ func (fsm *MapInputSource) Source() string {
 
 // Int returns an int from the map if it exists otherwise returns 0
 func (fsm *MapInputSource) Int(name string) (int, error) {
+	var err error
 	otherGenericValue, exists := fsm.valueMap[name]
 	if exists {
 		otherValue, isType := otherGenericValue.(int)
 		if !isType {
-			return 0, incorrectTypeForFlagError(name, "int", otherGenericValue)
+			sval, isStr := otherGenericValue.(string)
+			if isStr && strings.HasPrefix(sval, "$") {
+				otherValue, err = strconv.Atoi(os.Getenv(sval[1:]))
+				isType = err == nil
+			}
+			if !isType {
+				return 0, incorrectTypeForFlagError(name, "int", otherGenericValue)
+			}
 		}
 		return otherValue, nil
 	}
 	nestedGenericValue, exists := nestedVal(name, fsm.valueMap)
 	if exists {
 		otherValue, isType := nestedGenericValue.(int)
+		sval, isStr := nestedGenericValue.(string)
+		if isStr && strings.HasPrefix(sval, "$") {
+			otherValue, err = strconv.Atoi(os.Getenv(sval[1:]))
+			isType = err == nil
+		}
 		if !isType {
 			return 0, incorrectTypeForFlagError(name, "int", nestedGenericValue)
 		}
@@ -98,6 +113,9 @@ func castDuration(name string, value interface{}) (time.Duration, error) {
 		return otherValue, nil
 	}
 	otherStringValue, isType := value.(string)
+	if strings.HasPrefix(otherStringValue, "$") {
+		otherStringValue = os.Getenv(otherStringValue[1:])
+	}
 	parsedValue, err := time.ParseDuration(otherStringValue)
 	if !isType || err != nil {
 		return 0, incorrectTypeForFlagError(name, "duration", value)
@@ -111,6 +129,12 @@ func (fsm *MapInputSource) Float64(name string) (float64, error) {
 	if exists {
 		otherValue, isType := otherGenericValue.(float64)
 		if !isType {
+			var err error
+			sval, isStr := otherGenericValue.(string)
+			if isStr && strings.HasPrefix(sval, "$") {
+				otherValue, err = strconv.ParseFloat(os.Getenv(sval[1:]), 64)
+				isType = err == nil
+			}
 			return 0, incorrectTypeForFlagError(name, "float64", otherGenericValue)
 		}
 		return otherValue, nil
@@ -119,6 +143,12 @@ func (fsm *MapInputSource) Float64(name string) (float64, error) {
 	if exists {
 		otherValue, isType := nestedGenericValue.(float64)
 		if !isType {
+			var err error
+			sval, isStr := nestedGenericValue.(string)
+			if isStr && strings.HasPrefix(sval, "$") {
+				otherValue, err = strconv.ParseFloat(os.Getenv(sval[1:]), 64)
+				isType = err == nil
+			}
 			return 0, incorrectTypeForFlagError(name, "float64", nestedGenericValue)
 		}
 		return otherValue, nil
@@ -143,6 +173,13 @@ func castToInt64(v interface{}) (int64, bool) {
 	case int64:
 		int64Value = int64(value)
 		isType = true
+	case string:
+		var err error
+		sval := value
+		if strings.HasPrefix(sval, "$") {
+			int64Value, err = strconv.ParseInt(os.Getenv(sval[1:]), 10, 64)
+			isType = err == nil
+		}
 	}
 	return int64Value, isType
 }
@@ -200,6 +237,15 @@ func castToUint(v interface{}) (uint, bool) {
 			uintValue = uint(value)
 			isType = true
 		}
+	case string:
+		sval := value
+		if strings.HasPrefix(sval, "$") {
+			p, err := strconv.ParseUint(os.Getenv(sval[1:]), 10, 0)
+			if err == nil {
+				uintValue = uint(p)
+				isType = true
+			}
+		}
 	}
 	return uintValue, isType
 }
@@ -254,6 +300,15 @@ func castToUint64(v interface{}) (uint64, bool) {
 	case uint64:
 		uint64Value = uint64(value)
 		isType = true
+	case string:
+		sval := value
+		if strings.HasPrefix(sval, "$") {
+			p, err := strconv.ParseUint(os.Getenv(sval[1:]), 10, 64)
+			if err == nil {
+				uint64Value = p
+				isType = true
+			}
+		}
 	}
 	return uint64Value, isType
 }
@@ -288,6 +343,9 @@ func (fsm *MapInputSource) String(name string) (string, error) {
 		if !isType {
 			return "", incorrectTypeForFlagError(name, "string", otherGenericValue)
 		}
+		if strings.HasPrefix(otherValue, "$") {
+			return os.Getenv(otherValue[1:]), nil
+		}
 		return otherValue, nil
 	}
 	nestedGenericValue, exists := nestedVal(name, fsm.valueMap)
@@ -295,6 +353,9 @@ func (fsm *MapInputSource) String(name string) (string, error) {
 		otherValue, isType := nestedGenericValue.(string)
 		if !isType {
 			return "", incorrectTypeForFlagError(name, "string", nestedGenericValue)
+		}
+		if strings.HasPrefix(otherValue, "$") {
+			return os.Getenv(otherValue[1:]), nil
 		}
 		return otherValue, nil
 	}
@@ -444,12 +505,20 @@ func (fsm *MapInputSource) Bool(name string) (bool, error) {
 	if exists {
 		otherValue, isType := otherGenericValue.(bool)
 		if !isType {
+			sval, isStr := otherGenericValue.(string)
+			if isStr && strings.HasPrefix(sval, "$") {
+				return os.Getenv(sval[1:]) == "true", nil
+			}
 			return false, incorrectTypeForFlagError(name, "bool", otherGenericValue)
 		}
 		return otherValue, nil
 	}
 	nestedGenericValue, exists := nestedVal(name, fsm.valueMap)
 	if exists {
+		sval, isStr := nestedGenericValue.(string)
+		if isStr && strings.HasPrefix(sval, "$") {
+			return os.Getenv(sval[1:]) == "true", nil
+		}
 		otherValue, isType := nestedGenericValue.(bool)
 		if !isType {
 			return false, incorrectTypeForFlagError(name, "bool", nestedGenericValue)

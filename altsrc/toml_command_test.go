@@ -302,3 +302,37 @@ func TestCommandTomlFileFlagHasDefaultGlobalEnvTomlSetGlobalEnvWinsNested(t *tes
 
 	expect(t, err, nil)
 }
+
+func TestCommandTomlFileFlagResolvesEnvVarsWhenToldTo(t *testing.T) {
+	app := &cli.App{}
+	set := flag.NewFlagSet("test", 0)
+	_ = os.WriteFile("current.toml", []byte("test = '$THE_TEST'"), 0666)
+	defer os.Remove("current.toml")
+
+	_ = os.Setenv("THE_TEST", "11")
+	defer os.Setenv("THE_TEST", "")
+
+	test := []string{"test-cmd", "--load", "current.toml"}
+	_ = set.Parse(test)
+
+	c := cli.NewContext(app, set, nil)
+
+	command := &cli.Command{
+		Name:        "test-cmd",
+		Aliases:     []string{"tc"},
+		Usage:       "this is for testing",
+		Description: "testing",
+		Action: func(c *cli.Context) error {
+			val := c.Int("test")
+			expect(t, val, 11)
+			return nil
+		},
+		Flags: []cli.Flag{
+			NewIntFlag(&cli.IntFlag{Name: "test", Value: 7}),
+			&cli.StringFlag{Name: "load"}},
+	}
+	command.Before = InitInputSourceWithContext(command.Flags, NewTomlSourceFromFlagFunc("load"))
+	err := command.Run(c, test...)
+
+	expect(t, err, nil)
+}

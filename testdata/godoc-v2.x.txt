@@ -2374,7 +2374,8 @@ func NewJSONSourceFromFlagFunc(flag string) func(c *cli.Context) (InputSourceCon
 
 func NewTomlSourceFromFlagFunc(flagFileName string) func(cCtx *cli.Context) (InputSourceContext, error)
     NewTomlSourceFromFlagFunc creates a new TOML InputSourceContext from a
-    provided flag name and source context.
+    provided flag name and source context. If resolveEnv is true, will try to
+    resolve strings starting with '$' from the environment.
 
 func NewYamlSourceFromFlagFunc(flagFileName string) func(cCtx *cli.Context) (InputSourceContext, error)
     NewYamlSourceFromFlagFunc creates a new Yaml InputSourceContext from a

@@ -81,10 +81,11 @@ func NewTomlSourceFromFile(file string) (InputSourceContext, error) {
 	if err := readCommandToml(tsc.FilePath, &results); err != nil {
 		return nil, fmt.Errorf("Unable to load TOML file '%s': inner error: \n'%v'", tsc.FilePath, err.Error())
 	}
+
 	return &MapInputSource{file: file, valueMap: results.Map}, nil
 }
 
-// NewTomlSourceFromFlagFunc creates a new TOML InputSourceContext from a provided flag name and source context.
+// NewTomlSourceFromFlagFunc creates a new TOML InputSourceContext from a provided flag name and source context. If resolveEnv is true, will try to resolve strings starting with '$' from the environment.
 func NewTomlSourceFromFlagFunc(flagFileName string) func(cCtx *cli.Context) (InputSourceContext, error) {
 	return func(cCtx *cli.Context) (InputSourceContext, error) {
 		if cCtx.IsSet(flagFileName) {
